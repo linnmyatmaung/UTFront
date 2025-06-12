@@ -52,7 +52,7 @@ const AdminSelection: React.FC = () => {
         )}
 
         <div className="py-6 flex flex-col justify-center items-center sm:py-12">
-          <h1>Selectio</h1>
+          <h1>Selection</h1>
         </div>
       </div>
     </div>
