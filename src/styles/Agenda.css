@@ -1,0 +1,110 @@
+/* Header with Animation */
+header {
+  font-family: "Dancing Script", cursive;
+  background: linear-gradient(to right, #4a90e2, #9013fe, #f50057);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 90px;
+  animation: fadeInDown 1s ease-in-out; /* Add animation */
+}
+
+/* Keyframe for Fade-In Down Animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Appointment Cards */
+.appointment {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: -16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Time Styling */
+.time {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 16px;
+  flex: 0 0 auto;
+  width: 80px;
+  text-align: right;
+  color: #f6f2f2;
+}
+
+/* Radio Button */
+.radio-button {
+  margin-right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #3c00ff;
+  background: white;
+  z-index: 1;
+}
+
+.circle.blue {
+  background: linear-gradient(to right, #4a90e2, #9013fe);
+}
+
+/* Vertical Line */
+.vertical-line {
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(to bottom, #4a90e2, #9013fe, #f50057);
+  margin-top: 3px;
+}
+
+/* Details */
+.details {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: "Noto Sans Myanmar", sans-serif;
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #f3eded;
+}
+
+.name .info {
+  font-family: "Playfair Display", serif;
+  margin: 0;
+  font-size: 14px;
+  color: #fdfdfd;
+}
+
+/* End Section */
+.main1 .name1 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #888;
+  margin-top: 3px;
+  margin-right: 130px;
+}
