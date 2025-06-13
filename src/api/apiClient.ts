@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const base_api_url = "http://localhost:5000/api/";
+export const base_img_url = "http://localhost:5000/uploads/";
 
 const apiClient = axios.create({
   baseURL: base_api_url,
