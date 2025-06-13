@@ -3,7 +3,7 @@ import "swiper/css"; // Swiper core styles
 import "swiper/css/effect-coverflow"; // Coverflow effect styles
 import { EffectCoverflow } from "swiper/modules";
 import { SelectionResponse } from "@/api/selectionApi";
-import { base_api_url } from "@/api/apiClient";
+import { base_img_url } from "@/api/apiClient";
 import { useState } from "react";
 import KingCrown from "@/assets/King.png";
 import QueenCrown from "@/assets/Queen.png";
@@ -76,7 +76,7 @@ function SwiperComponent({
               <div className="size-60 bg-gradient-to-r from-pink-300 via-red-400 to-violet-700 rounded-full flex items-center justify-center text-white font-bold glow-container mb-4">
                 <img
                   className="size-56 object-cover rounded-full"
-                  src={base_api_url + "/uploads" + item.profileImg}
+                  src={base_img_url + item.profileImg}
                   alt={item.name}
                 />
               </div>
