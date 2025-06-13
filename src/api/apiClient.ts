@@ -8,7 +8,6 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   (config) => {
-    // Check the endpoint to determine which token to use
     const isAdminRequest = window.location.href.includes("/admin");
     const tokenKey = isAdminRequest ? "admin_jwt" : "code_jwt";
     const token = localStorage.getItem(tokenKey);
@@ -28,12 +27,17 @@ apiClient.interceptors.response.use(
   (error) => {
     if (error.response) {
       const { status } = error.response;
+      const isAdminRoute = window.location.href.includes("/admin");
 
       if (status === 401 || status === 403) {
-        // Handle token removal for both code and admin
-        localStorage.removeItem("code_jwt");
-        // localStorage.removeItem("admin_jwt");
+        // Remove the correct token
+        if (isAdminRoute) {
+          localStorage.removeItem("admin_jwt");
+        } else {
+          localStorage.removeItem("code_jwt");
+        }
 
+        // Optional: console messages
         if (status === 401) {
           console.warn("Unauthorized: Please log in again.");
         }
@@ -44,8 +48,8 @@ apiClient.interceptors.response.use(
           );
         }
 
-        // Redirect to login page
-        window.location.href = "/login";
+        // Redirect to appropriate login page
+        window.location.href = isAdminRoute ? "/login/admin" : "/login/code";
       }
     }
 

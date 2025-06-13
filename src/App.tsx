@@ -44,7 +44,6 @@ const App = () => {
             isAdminAuthenticated ? <Navigate to="/admin" /> : <AdminLogin />
           }
         />
-        {/* <Route path="/login/admin" element={<AdminLoginPage />} /> */}
 
         {/* Add all code protected routes here */}
         <Route element={<ProtectedCodeLayout />}>
