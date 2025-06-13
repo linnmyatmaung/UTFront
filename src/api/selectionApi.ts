@@ -9,6 +9,13 @@ export interface SelectionResponse {
   major: string;
   hobby: string;
 }
+export interface SelectionRequest {
+  name: string;
+  gender: string;
+  profileImage: string;
+  major: string;
+  hobby: string;
+}
 
 export const getAllSelections = async (): Promise<SelectionResponse[]> => {
   const response = await apiClient.get("/selection");
