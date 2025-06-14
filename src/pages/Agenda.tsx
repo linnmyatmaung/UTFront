@@ -44,9 +44,39 @@ function Agenda() {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center sm:py-12">
-      <header className="w-full py-4 text-center bg-blue-500 text-white mb-3">
-        <h1 className="text-2xl font-bold">Welcome to the Agenda</h1>
+      <header className="w-full py-4 bg-blue-500 text-white mb-3 flex justify-between items-center px-4">
+        {/* Red Back Arrow Logo */}
+        <a
+          href="http://localhost:5173/"
+          className="hover:opacity-80 transition"
+          title="Back to Home"
+        >
+          <svg
+            width="28px"
+            height="28px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="#FF0000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </a>
+
+        {/* Centered Heading */}
+        <h1 className="text-2xl font-bold text-center flex-grow">
+          Welcome to the Agenda
+        </h1>
+
+        {/* Right spacer for balance */}
+        <div style={{ width: "28px" }}></div>
       </header>
+
       <div className="main">
         {loading ? (
           // Show loader if data is still being fetched

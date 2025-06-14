@@ -16,7 +16,10 @@ apiClient.interceptors.request.use(
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
-    config.headers["Content-Type"] = "application/json";
+
+    if (config.data && !(config.data instanceof FormData)) {
+      config.headers["Content-Type"] = "application/json";
+    }
 
     return config;
   },
@@ -31,14 +34,12 @@ apiClient.interceptors.response.use(
       const isAdminRoute = window.location.href.includes("/admin");
 
       if (status === 401 || status === 403) {
-        // Remove the correct token
         if (isAdminRoute) {
           localStorage.removeItem("admin_jwt");
         } else {
           localStorage.removeItem("code_jwt");
         }
 
-        // Optional: console messages
         if (status === 401) {
           console.warn("Unauthorized: Please log in again.");
         }
@@ -49,7 +50,6 @@ apiClient.interceptors.response.use(
           );
         }
 
-        // Redirect to appropriate login page
         window.location.href = isAdminRoute ? "/login/admin" : "/login/code";
       }
     }
