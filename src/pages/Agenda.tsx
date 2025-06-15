@@ -31,8 +31,8 @@ function Agenda() {
         prev.map(
           (agenda) =>
             agenda.id === updated.id
-              ? { ...agenda, ...updated } // Update the current agenda
-              : { ...agenda, current: false } // Unset others as 'current'
+              ? { ...agenda, ...updated } // Only update the matched agenda
+              : agenda // Leave others untouched
         )
       );
     });
