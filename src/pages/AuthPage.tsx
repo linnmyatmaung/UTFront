@@ -5,11 +5,11 @@ import TwinklingParticles from "@/components/ui/TwinklingParticles ";
 
 export function AuthCodePage() {
   return (
-    <div className="min-h-screen py-6 flex flex-col justify-center items-center sm:py-12">
+    <div className="min-h-screen py-6 flex flex-col justify-center items-center sm:py-12 bg-gradient-to-br from-purple-900/20 to-blue-900/20">
       <div className="absolute z-0">
         <TwinklingParticles />
       </div>
-      <SpotlightCard className="w-[350px] z-10 relative">
+      <SpotlightCard className="w-[350px] z-10 relative backdrop-blur-md bg-white/10 border border-white/20 shadow-xl rounded-2xl">
         <div>
           <div className="flex flex-col items-center">
             <div className="w-full">
@@ -31,7 +31,6 @@ export function AuthCodePage() {
           <VotingPinInput />
         </div>
       </SpotlightCard>
-
     </div>
   );
 }

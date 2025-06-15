@@ -10,7 +10,7 @@
 
 ## 📋 Project Overview
 
-A real-time voting and agenda application that enables users to participate in agenda-based voting sessions with instant updates and live results.
+A real-time voting and agenda application that enables users to participate in voting and view agenda sessions with instant updates and live results.
 
 ### User Features
 

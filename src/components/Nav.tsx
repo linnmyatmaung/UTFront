@@ -1,11 +1,21 @@
+import React from "react";
 import { useAuthContext } from "@/context/AuthContext";
 
-const Nav = () => {
+interface NavProps {
+  className?: string;
+}
+
+const Nav: React.FC<NavProps> = ({ className = "" }) => {
   const { codelogout } = useAuthContext();
 
   return (
-    <div className="flex justify-between w-full items-center px-2">
-      <a href="http://localhost:5173/agenda">
+    <div
+      className={`flex justify-between w-full items-center px-6 py-4 backdrop-blur-md bg-white/5 border border-white/10 shadow-lg rounded-xl ${className}`}
+    >
+      <a
+        href="http://localhost:5173/agenda"
+        className="hover:opacity-80 transition-opacity"
+      >
         <svg
           width="140px"
           height="50px"
@@ -49,7 +59,7 @@ const Nav = () => {
       </a>
 
       <button
-        className="flex items-center gap-2 px-6 py-2 font-poppins text-red-500 border-red-500 border-2 rounded-full"
+        className="flex items-center gap-2 px-6 py-2 font-poppins text-red-500 border-red-500 border-2 rounded-full hover:bg-red-500/10 transition-colors"
         onClick={codelogout}
       >
         <svg
@@ -62,6 +72,7 @@ const Nav = () => {
           <path d="M11 4V7L5 7V9H11V12H12L16 8L12 4L11 4Z" fill="#FF0000" />
           <path d="M0 1L3.41715e-07 15H8V13H2L2 3H8L8 1L0 1Z" fill="#FF0000" />
         </svg>
+        Logout
       </button>
     </div>
   );

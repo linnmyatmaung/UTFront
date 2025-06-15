@@ -56,14 +56,20 @@ function MainPage() {
   }
 
   return (
-    <div className="min-h-screen py-6 flex flex-col justify-center items-center sm:py-12">
-      <Nav/>
+    <div className="min-h-screen py-6 flex flex-col justify-center items-center sm:py-12 bg-black">
+      <Nav className="backdrop-blur-md bg-white/5 border border-white/10 shadow-lg rounded-xl mb-8"/>
         {/* Male Swiper */}
-      <SwiperComponent title="KING" data={maleData} onActiveIndexChange={(newIndex) => setActiveMaleId(maleData[newIndex] ? { id: maleData[newIndex].id, name: maleData[newIndex].name } : null)} />
+      <div className="w-full max-w-4xl backdrop-blur-md bg-white/5 border border-white/10 shadow-lg rounded-xl p-6 mb-8">
+        <SwiperComponent title="KING" data={maleData} onActiveIndexChange={(newIndex) => setActiveMaleId(maleData[newIndex] ? { id: maleData[newIndex].id, name: maleData[newIndex].name } : null)} />
+      </div>
       {/* Female Swiper */}
-      <SwiperComponent title="QUEEN" data={femaleData} onActiveIndexChange={(newIndex) => setActiveFemaleId(femaleData[newIndex] ? { id: femaleData[newIndex].id, name: femaleData[newIndex].name } : null)}/>
+      <div className="w-full max-w-4xl backdrop-blur-md bg-white/5 border border-white/10 shadow-lg rounded-xl p-6 mb-8">
+        <SwiperComponent title="QUEEN" data={femaleData} onActiveIndexChange={(newIndex) => setActiveFemaleId(femaleData[newIndex] ? { id: femaleData[newIndex].id, name: femaleData[newIndex].name } : null)}/>
+      </div>
 
-      {status && <Button male={activeMaleId} female={activeFemaleId} onAfterStatus={(data) => setStatus(data)}/>}
+      {status && <div className="backdrop-blur-md bg-white/5 border border-white/10 shadow-lg rounded-xl p-4">
+        <Button male={activeMaleId} female={activeFemaleId} onAfterStatus={(data) => setStatus(data)}/>
+      </div>}
     </div>
   );
 }
