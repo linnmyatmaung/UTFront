@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const base_api_url = "http://localhost:5000/api/";
-export const base_img_url = "http://localhost:5000/uploads/";
+export const base_api_url = "https://utback.onrender.com/api/";
+export const base_img_url = "https://utback.onrender.com/uploads/";
 
 const apiClient = axios.create({
   baseURL: base_api_url,

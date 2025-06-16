@@ -34,6 +34,9 @@ src/
 ├── assets/       # Static assets and images
 ├── common/       # Shared components and utilities
 ├── components/   # Reusable UI components
+│   ├── admin/    # Admin-specific components
+│   ├── user/     # User-specific components
+│   └── shared/   # Shared UI components
 ├── context/      # React context providers
 ├── hooks/        # Custom React hooks
 ├── layout/       # Layout components and templates
@@ -50,54 +53,104 @@ src/
 
 - 🎯 **Voting System**
 
-  - User-friendly voting interface
-  - Real-time vote casting
-  - Secure vote counting
-  - Multiple agenda support
+  - User-friendly voting interface with real-time updates
+  - Secure vote casting with validation
+  - Real-time vote counting and results display
+  - Multiple agenda support with active session management
+  - Vote history tracking
 
 - 📊 **Admin Dashboard**
 
-  - Agenda creation and management
-  - Real-time agenda switching
-  - Voting session control
-  - Result visualization
-  - CRUD operations for selections
+  - Comprehensive agenda creation and management
+  - Real-time agenda switching with confirmation
+  - Voting session control with start/stop functionality
+  - Detailed result visualization with statistics
+  - CRUD operations for selections and agendas
+  - User activity monitoring
 
 - 🔄 **Real-time Updates**
 
-  - WebSocket integration
-  - Instant agenda changes
-  - Live voting results
-  - Synchronized user experience
+  - WebSocket integration for instant updates
+  - Live agenda changes with user notifications
+  - Real-time voting results with progress indicators
+  - Synchronized user experience across all devices
+  - Connection status monitoring
 
 - 🎨 **Modern UI**
 
-  - Clean and intuitive design
-  - Responsive layout
-  - TailwindCSS styling
-  - Radix UI components
+  - Clean and intuitive design with dark/light mode
+  - Fully responsive layout for all devices
+  - TailwindCSS styling with custom components
+  - Radix UI components for accessibility
+  - Loading states and animations
 
 - 🔒 **Security**
-  - Protected admin routes
-  - Secure authentication
-  - Type-safe operations
+  - Protected admin routes with authentication
+  - Secure session management
+  - Type-safe operations with TypeScript
+  - Input validation and sanitization
+  - Error handling and logging
 
 ## 🛠️ Tech Stack
 
 - **Frontend Framework:** React 18.3.1
 - **Language:** TypeScript 5.6.2
-- **Styling:** TailwindCSS 3.4.17
-- **UI Components:**
-  - Radix UI
-  - React Bootstrap
-  - Lucide React Icons
-- **Form Management:** Formik + Yup
-- **Real-time Communication:** Socket.IO Client
-- **HTTP Client:** Axios
-- **Development Tools:**
-  - ESLint
+- **Styling:** 
+  - TailwindCSS 3.4.17
+  - CSS Modules
   - PostCSS
-  - Autoprefixer
+- **UI Components:**
+  - Radix UI (Accessible components)
+  - React Bootstrap (Layout components)
+  - Lucide React Icons (Icon library)
+  - React Hot Toast (Notifications)
+- **State Management:**
+  - React Context API
+  - Custom hooks
+- **Form Management:** 
+  - Formik (Form handling)
+  - Yup (Validation)
+- **Real-time Communication:** 
+  - Socket.IO Client
+  - WebSocket API
+- **HTTP Client:** 
+  - Axios
+  - Fetch API
+- **Development Tools:**
+  - ESLint (Code linting)
+  - Prettier (Code formatting)
+  - PostCSS (CSS processing)
+  - Autoprefixer (CSS compatibility)
+  - TypeScript (Type checking)
+
+## 🔌 Real-time Communication
+
+The application uses Socket.IO for real-time communication between the client and server:
+
+- **Socket Implementation (`src/socket.ts`)**
+  - Establishes WebSocket connection to the backend server
+  - Configured with credentials for secure communication
+  - Default connection to `http://localhost:5000`
+  - Singleton pattern for consistent socket instance across the application
+
+### Socket Events
+
+The socket connection handles various real-time events:
+
+- **Voting Events**
+  - Vote submission and updates
+  - Real-time vote counting
+  - Vote status changes
+
+- **Agenda Events**
+  - New agenda creation
+  - Agenda status updates
+  - Active agenda changes
+
+- **Admin Events**
+  - Session control commands
+  - Admin authentication status
+  - User activity monitoring
 
 ## 🚀 Getting Started
 
