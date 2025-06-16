@@ -47,7 +47,7 @@ function Agenda() {
       <header className="w-full py-4 bg-blue-500 text-white mb-3 flex justify-between items-center px-4">
         {/* Red Back Arrow Logo */}
         <a
-          href="http://localhost:5173/"
+          href="https://ut-front.vercel.app/"
           className="hover:opacity-80 transition"
           title="Back to Home"
         >

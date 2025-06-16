@@ -13,7 +13,7 @@ const Nav: React.FC<NavProps> = ({ className = "" }) => {
       className={`flex justify-between w-full items-center px-6 py-4 backdrop-blur-md bg-white/5 border border-white/10 shadow-lg rounded-xl ${className}`}
     >
       <a
-        href="http://localhost:5173/agenda"
+        href="https://ut-front.vercel.app/agenda"
         className="hover:opacity-80 transition-opacity"
       >
         <svg
