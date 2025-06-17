@@ -3,7 +3,6 @@ import "swiper/css"; // Swiper core styles
 import "swiper/css/effect-coverflow"; // Coverflow effect styles
 import { EffectCoverflow } from "swiper/modules";
 import { SelectionResponse } from "@/api/selectionApi";
-import { base_img_url } from "@/api/apiClient";
 import { useState } from "react";
 import KingCrown from "@/assets/King.png";
 import QueenCrown from "@/assets/Queen.png";
