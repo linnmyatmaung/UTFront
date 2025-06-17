@@ -76,7 +76,7 @@ function SwiperComponent({
               <div className="size-60 bg-gradient-to-r from-pink-300 via-red-400 to-violet-700 rounded-full flex items-center justify-center text-white font-bold glow-container mb-4">
                 <img
                   className="size-56 object-cover rounded-full"
-                  src={base_img_url + item.profileImg}
+                  src={item.profileImg}
                   alt={item.name}
                 />
               </div>

@@ -98,12 +98,13 @@ const AdminSelection: React.FC = () => {
         imageUrl = await uploadToCloudinary(formData.profileImg);
       }
 
-      const payload = new FormData();
-      payload.append("name", formData.name);
-      payload.append("major", formData.major);
-      payload.append("hobby", formData.hobby);
-      payload.append("gender", formData.gender);
-      payload.append("profileImg", imageUrl);
+      const payload = {
+        name: formData.name,
+        major: formData.major,
+        hobby: formData.hobby,
+        gender: formData.gender,
+        profileImg: imageUrl,
+      };
 
       if (selectedData) {
         await editCandidate(selectedData.id, payload);
