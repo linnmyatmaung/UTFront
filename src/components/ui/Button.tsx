@@ -1,5 +1,5 @@
 import { BtnPass, insertVoteLog, VoteLogRequest } from "@/api/voteApi";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface ButtonProps {
   male: BtnPass | null;
@@ -7,27 +7,36 @@ interface ButtonProps {
   onAfterStatus: (status: boolean) => void;
 }
 
-const Button = ({ male, female , onAfterStatus }: ButtonProps) => {
+const Button = ({ male, female, onAfterStatus }: ButtonProps) => {
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const isSubmittingRef = useRef(false);
 
   const handleClick = () => {
     setPopupVisible(true);
   };
 
-  const handleConfirm = async() => {
-    if(male?.id && female?.id){
+  const handleConfirm = async () => {
+    if (isSubmittingRef.current) return;
+    if (male?.id && female?.id) {
       const data: VoteLogRequest = {
         maleId: male.id,
-        femaleId: female.id
-      }
-      try{
+        femaleId: female.id,
+      };
+      isSubmittingRef.current = true;
+      setIsLoading(true);
+
+      try {
         const res = await insertVoteLog(data);
-        if(res.status === 201){
+        if (res.status === 201) {
           setPopupVisible(false);
           onAfterStatus(false);
         }
-      }catch(error){
+      } catch (error) {
         console.error("Failed to vote:", error);
+      } finally {
+        setIsLoading(false);
+        isSubmittingRef.current = false;
       }
     }
   };
@@ -39,7 +48,9 @@ const Button = ({ male, female , onAfterStatus }: ButtonProps) => {
   return (
     <div>
       <div className="relative group flex flex-col justify-center">
-      <h2 className="text-primary text-lg text-bold mb-4 text-center">👇!! Click here to vote Both !!👇</h2>
+        <h2 className="text-primary text-lg text-bold mb-4 text-center">
+          👇!! Click here to vote Both !!👇
+        </h2>
         <button
           className="relative inline-block p-px font-semibold leading-6 text-white bg-neutral-900 shadow-2xl cursor-pointer rounded-2xl shadow-violet-900 transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-violet-600"
           onClick={handleClick}
@@ -60,14 +71,15 @@ const Button = ({ male, female , onAfterStatus }: ButtonProps) => {
             <h2 className="text-lg font-semibold mb-4">
               Confirm Your Selection
             </h2>
-            <p className="mb-4">KING  : {male?.name}</p>
+            <p className="mb-4">KING : {male?.name}</p>
             <p className="mb-4">QUEEN : {female?.name}</p>
             <div className="flex gap-4">
               <button
                 onClick={handleConfirm}
-                className="w-1/2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                disabled={isLoading}
+                className="w-1/2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
               >
-                OK
+                {isLoading ? "Voting..." : "OK"}
               </button>
               <button
                 onClick={handleCancel}
