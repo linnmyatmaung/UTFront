@@ -7,7 +7,7 @@ interface SelectionFormModalProps {
     major: string;
     hobby: string;
     gender: string;
-    profileImage?: File | null;
+    profileImg?: File | null;
   };
   previewImg: string | null;
   isEdit: boolean;
@@ -77,7 +77,7 @@ const SelectionFormModal: React.FC<SelectionFormModalProps> = ({
 
           <input
             type="file"
-            name="profileImage"
+            name="profileImg"
             accept="image/*"
             className="w-full mb-2 p-2 border rounded text-black"
             onChange={(e) => {

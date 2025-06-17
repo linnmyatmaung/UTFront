@@ -5,13 +5,13 @@ import {
   deleteCandidate,
   SelectionResponse,
 } from "@/api/selectionApi";
-import { base_img_url } from "@/api/apiClient";
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import Loader from "@/common/Loader";
 import SelectionFormModal from "@/components/modal/SelectionFormModal";
 import ConfirmDeleteModal from "@/components/modal/ConfirmDeleteModal";
 import { toast } from "react-toastify";
+import { uploadToCloudinary } from "@/api/cloudinaryUpload";
 import "react-toastify/dist/ReactToastify.css";
 
 const AdminSelection: React.FC = () => {
@@ -31,7 +31,7 @@ const AdminSelection: React.FC = () => {
     major: "",
     hobby: "",
     gender: "Male",
-    profileImage: null as File | null,
+    profileImg: null as File | null,
   });
 
   const fetchData = async () => {
@@ -57,7 +57,7 @@ const AdminSelection: React.FC = () => {
       major: "",
       hobby: "",
       gender: "Male",
-      profileImage: null,
+      profileImg: null,
     });
     setPreviewImg(null);
     setSelectedData(null);
@@ -72,9 +72,9 @@ const AdminSelection: React.FC = () => {
         major: item.major,
         hobby: item.hobby,
         gender: item.gender,
-        profileImage: null, // Only preview; won't send unless user uploads new
+        profileImg: null,
       });
-      setPreviewImg(base_img_url + item.profileImg);
+      setPreviewImg(item.profileImg ?? null);
       setSelectedData(item);
       setIsDialogOpen(true);
     }
@@ -90,18 +90,21 @@ const AdminSelection: React.FC = () => {
 
   const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    const payload = new FormData();
-    payload.append("name", formData.name);
-    payload.append("major", formData.major);
-    payload.append("hobby", formData.hobby);
-    payload.append("gender", formData.gender);
-
-    // Only append new image if user selected one
-    if (formData.profileImage instanceof File) {
-      payload.append("profileImage", formData.profileImage);
-    }
 
     try {
+      let imageUrl = selectedData?.profileImg || "";
+
+      if (formData.profileImg instanceof File) {
+        imageUrl = await uploadToCloudinary(formData.profileImg);
+      }
+
+      const payload = new FormData();
+      payload.append("name", formData.name);
+      payload.append("major", formData.major);
+      payload.append("hobby", formData.hobby);
+      payload.append("gender", formData.gender);
+      payload.append("profileImg", imageUrl);
+
       if (selectedData) {
         await editCandidate(selectedData.id, payload);
         toast.success("Candidate updated successfully");
@@ -109,6 +112,7 @@ const AdminSelection: React.FC = () => {
         await createCandidate(payload);
         toast.success("Candidate created successfully");
       }
+
       await fetchData();
     } catch (error) {
       console.error("Form submission failed:", error);
@@ -151,7 +155,7 @@ const AdminSelection: React.FC = () => {
               <td className="p-3 border">
                 <img
                   className="size-28 object-cover rounded-full mx-auto"
-                  src={base_img_url + item.profileImg}
+                  src={item.profileImg}
                   alt={item.name}
                 />
               </td>
@@ -214,7 +218,7 @@ const AdminSelection: React.FC = () => {
         onSubmit={handleSubmitForm}
         onChange={setFormData}
         onImageChange={(file, preview) => {
-          setFormData({ ...formData, profileImage: file });
+          setFormData({ ...formData, profileImg: file });
           setPreviewImg(preview);
         }}
       />
